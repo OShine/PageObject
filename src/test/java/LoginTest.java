@@ -26,13 +26,15 @@ public class LoginTest {
         ProfilesIni profile = new ProfilesIni();
         FirefoxProfile ffprofile = profile.getProfile("default");
         driver = new FirefoxDriver(ffprofile);
-
-        //driver.manage().window().maximize();
+        driver.manage().window().maximize();
         driver.get(baseURL);
     }
 
     @Test
     public void loginTest() {
+
+        mainPage = new MainPage(driver);
+        emailPage = new EmailPage(driver);
 
         mainPage.getLoginInput().sendKeys("seleniumtests10@mail.ru");
         mainPage.getPasswordInput().sendKeys("060788avavav");
