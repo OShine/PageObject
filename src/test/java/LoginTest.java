@@ -9,6 +9,8 @@ import org.testng.annotations.Test;
 import pages.EmailPage;
 import pages.MainPage;
 
+import java.util.concurrent.TimeUnit;
+
 
 /**
  * Created by DenisShklyannik on 26.03.2017.
@@ -26,6 +28,7 @@ public class LoginTest {
         ProfilesIni profile = new ProfilesIni();
         FirefoxProfile ffprofile = profile.getProfile("default");
         driver = new FirefoxDriver(ffprofile);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get(baseURL);
     }
