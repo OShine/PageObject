@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 /**
  * Created by DenisShklyannik on 26.03.2017.
@@ -15,15 +14,18 @@ public class MainPage {
         this.driver = driver;
     }
 
-    public WebElement getLoginInput() {
-        return driver.findElement(By.id("mailbox__login"));
+    public MainPage setLoginInput(String login) {
+       driver.findElement(By.id("mailbox__login")).sendKeys(login);
+       return this;
     }
 
-    public WebElement getPasswordInput() {
-        return driver.findElement(By.id("mailbox__password"));
+    public MainPage setPasswordInput(String password) {
+        driver.findElement(By.id("mailbox__password")).sendKeys(password);
+        return this;
     }
 
-    public WebElement getLoginButton() {
-        return driver.findElement(By.id("mailbox__auth__button"));
+    public MainPage clickLoginButton() {
+        driver.findElement(By.id("mailbox__auth__button")).click();
+        return this;
     }
 }

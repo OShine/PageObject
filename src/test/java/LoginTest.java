@@ -2,10 +2,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.EmailPage;
 import pages.MainPage;
 
@@ -22,13 +19,13 @@ public class LoginTest {
     MainPage mainPage;
     EmailPage emailPage;
 
-    @BeforeMethod
-    public void beforeMethod() {
+    @BeforeTest
+    public void beforeTest() {
 
         ProfilesIni profile = new ProfilesIni();
         FirefoxProfile ffprofile = profile.getProfile("default");
         driver = new FirefoxDriver(ffprofile);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get(baseURL);
     }
@@ -39,15 +36,14 @@ public class LoginTest {
         mainPage = new MainPage(driver);
         emailPage = new EmailPage(driver);
 
-        mainPage.getLoginInput().sendKeys("seleniumtests10@mail.ru");
-        mainPage.getPasswordInput().sendKeys("060788avavav");
-        mainPage.getLoginButton().click();
-        Assert.assertTrue(emailPage.getComposeButton().isDisplayed(),"Compose button is not visible");
+        mainPage.setLoginInput("seleniumtests10@mail.ru");
+        mainPage.setPasswordInput("060788avavav");
+        mainPage.clickLoginButton();
+        emailPage.composeButtonIsDisplayed("Compose button is not visible");
     }
 
-    @AfterMethod
-    public void afterMethod() {
-
-        driver.close();
+    @AfterTest
+    public void tearDown() {
+        driver.quit();
     }
 }

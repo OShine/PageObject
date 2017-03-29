@@ -1,8 +1,8 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 /**
  * Created by DenisShklyannik on 26.03.2017.
@@ -14,7 +14,8 @@ public class EmailPage {
         this.driver = driver;
     }
 
-    public WebElement getComposeButton() {
-        return driver.findElement(By.cssSelector("[data-name=\"compose\"]"));
+    public EmailPage composeButtonIsDisplayed(String errorMessage) {
+        Assert.assertTrue(errorMessage, driver.findElement(By.cssSelector("[data-name=\"compose\"]")).isDisplayed() );
+        return this;
     }
 }
