@@ -16,8 +16,8 @@ import java.util.concurrent.TimeUnit;
 public class Tests {
 
     private WebDriver driver;
-    public MainPage mainPage;
-    public EmailPage emailPage;
+    private MainPage mainPage;
+    private EmailPage emailPage;
 
     private static final String BASE_URL = "https://mail.ru";
     private static final String USERNAME = "seleniumtests10@mail.ru";
