@@ -26,6 +26,10 @@ public class MainPage {
         driver.findElement(MAILBOX_PASSWORD).sendKeys(password);
     }
 
+    public String getAuthButtonText() {
+        return driver.findElement(MAILBOX_AUTH_BUTTON).getAttribute("value");
+    }
+
     private void clickLoginButton() {
         driver.findElement(MAILBOX_AUTH_BUTTON).click();
     }

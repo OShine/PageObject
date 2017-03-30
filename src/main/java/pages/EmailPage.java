@@ -10,6 +10,7 @@ public class EmailPage {
     private WebDriver driver;
 
     private static final By COMPOSE_BUTTON = By.cssSelector("[data-name=\"compose\"]>span");
+    private static final By LOGOUT_BUTTON = By.cssSelector("#PH_logoutLink");
 
     public EmailPage(WebDriver driver) {
         this.driver = driver;
@@ -18,4 +19,9 @@ public class EmailPage {
     public String getComposeButtonText() {
         return driver.findElement(COMPOSE_BUTTON).getText();
     }
+
+    public void clickLogoutButton(){
+        driver.findElement(LOGOUT_BUTTON).click();
+    }
+
 }
