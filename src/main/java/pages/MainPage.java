@@ -35,6 +35,4 @@ public class MainPage {
         setPassword(password);
         clickLoginButton();
     }
-
-
 }

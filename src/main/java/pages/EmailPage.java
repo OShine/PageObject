@@ -18,5 +18,4 @@ public class EmailPage {
     public String getComposeButtonText() {
         return driver.findElement(COMPOSE_BUTTON).getText();
     }
-
 }
