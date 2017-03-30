@@ -8,24 +8,33 @@ import org.openqa.selenium.WebDriver;
  */
 public class MainPage {
 
-    public WebDriver driver;
+    private WebDriver driver;
+
+    private static final By MAILBOX_LOGIN = By.id("mailbox__login");
+    private static final By MAILBOX_PASSWORD = By.id("mailbox__password");
+    private static final By MAILBOX_AUTH_BUTTON = By.id("mailbox__auth__button");
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
     }
 
-    public MainPage setLoginInput(String login) {
-       driver.findElement(By.id("mailbox__login")).sendKeys(login);
-       return this;
+    private void setLogin(String login) {
+        driver.findElement(MAILBOX_LOGIN).sendKeys(login);
     }
 
-    public MainPage setPasswordInput(String password) {
-        driver.findElement(By.id("mailbox__password")).sendKeys(password);
-        return this;
+    private void setPassword(String password) {
+        driver.findElement(MAILBOX_PASSWORD).sendKeys(password);
     }
 
-    public MainPage clickLoginButton() {
-        driver.findElement(By.id("mailbox__auth__button")).click();
-        return this;
+    private void clickLoginButton() {
+        driver.findElement(MAILBOX_AUTH_BUTTON).click();
     }
+
+    public void loginAs(String userName, String password) {
+        setLogin(userName);
+        setPassword(password);
+        clickLoginButton();
+    }
+
+
 }

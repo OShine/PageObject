@@ -2,6 +2,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
+import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.EmailPage;
 import pages.MainPage;
@@ -14,10 +15,15 @@ import java.util.concurrent.TimeUnit;
  */
 public class LoginTest {
 
-    public WebDriver driver;
-    public String baseURL = "https://mail.ru";
-    MainPage mainPage;
-    EmailPage emailPage;
+    private WebDriver driver;
+    public MainPage mainPage;
+    public EmailPage emailPage;
+
+    private static final String BASE_URL = "https://mail.ru";
+    private static final String USERNAME = "seleniumtests10@mail.ru";
+    private static final String PASSWORD = "060788avavav";
+    private static final String COMPOSE_BUTTON_TEXT = "Написать письмо";
+
 
     @BeforeTest
     public void beforeTest() {
@@ -27,7 +33,7 @@ public class LoginTest {
         driver = new FirefoxDriver(ffprofile);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        driver.get(baseURL);
+        driver.get(BASE_URL);
     }
 
     @Test
@@ -36,10 +42,8 @@ public class LoginTest {
         mainPage = new MainPage(driver);
         emailPage = new EmailPage(driver);
 
-        mainPage.setLoginInput("seleniumtests10@mail.ru");
-        mainPage.setPasswordInput("060788avavav");
-        mainPage.clickLoginButton();
-        emailPage.composeButtonIsDisplayed("Compose button is not visible");
+        mainPage.loginAs(USERNAME, PASSWORD);
+        Assert.assertEquals(emailPage.getComposeButtonText(), COMPOSE_BUTTON_TEXT);
     }
 
     @AfterTest

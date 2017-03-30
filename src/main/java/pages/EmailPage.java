@@ -1,6 +1,5 @@
 package pages;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -8,14 +7,16 @@ import org.openqa.selenium.WebDriver;
  * Created by DenisShklyannik on 26.03.2017.
  */
 public class EmailPage {
-    WebDriver driver;
+    private WebDriver driver;
+
+    private static final By COMPOSE_BUTTON = By.cssSelector("[data-name=\"compose\"]>span");
 
     public EmailPage(WebDriver driver) {
         this.driver = driver;
     }
 
-    public EmailPage composeButtonIsDisplayed(String errorMessage) {
-        Assert.assertTrue(errorMessage, driver.findElement(By.cssSelector("[data-name=\"compose\"]")).isDisplayed() );
-        return this;
+    public String getComposeButtonText() {
+        return driver.findElement(COMPOSE_BUTTON).getText();
     }
+
 }
