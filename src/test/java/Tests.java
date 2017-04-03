@@ -9,7 +9,7 @@ import pages.MainPage;
 
 import java.util.concurrent.TimeUnit;
 
-
+// Page Factory
 /**
  * Created by DenisShklyannik on 26.03.2017.
  */
