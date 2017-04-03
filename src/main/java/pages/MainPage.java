@@ -1,37 +1,46 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 /**
+ * Page Factory
  * Created by DenisShklyannik on 26.03.2017.
  */
 public class MainPage {
 
     private WebDriver driver;
 
-    private static final By MAILBOX_LOGIN = By.id("mailbox__login");
-    private static final By MAILBOX_PASSWORD = By.id("mailbox__password");
-    private static final By MAILBOX_AUTH_BUTTON = By.id("mailbox__auth__button");
-
     public MainPage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
-    private void setLogin(String login) {
-        driver.findElement(MAILBOX_LOGIN).sendKeys(login);
+    @FindBy(id = "mailbox__login")
+    private WebElement userName;
+
+    @FindBy(id = "mailbox__password")
+    private WebElement userPassword;
+
+    @FindBy(id = "mailbox__auth__button")
+    private WebElement authButton;
+
+    public void setLogin(String login) {
+        userName.sendKeys(login);
     }
 
-    private void setPassword(String password) {
-        driver.findElement(MAILBOX_PASSWORD).sendKeys(password);
+    public void setPassword(String password) {
+        userPassword.sendKeys(password);
     }
 
     public String getAuthButtonText() {
-        return driver.findElement(MAILBOX_AUTH_BUTTON).getAttribute("value");
+        return authButton.getAttribute("value");
     }
 
-    private void clickLoginButton() {
-        driver.findElement(MAILBOX_AUTH_BUTTON).click();
+    public void clickLoginButton() {
+        authButton.click();
     }
 
     public void loginAs(String userName, String password) {
@@ -39,4 +48,5 @@ public class MainPage {
         setPassword(password);
         clickLoginButton();
     }
+
 }

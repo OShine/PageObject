@@ -2,6 +2,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.EmailPage;
@@ -9,8 +10,8 @@ import pages.MainPage;
 
 import java.util.concurrent.TimeUnit;
 
-// Page Factory
 /**
+ * Page Factory
  * Created by DenisShklyannik on 26.03.2017.
  */
 public class Tests {
@@ -34,24 +35,21 @@ public class Tests {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get(BASE_URL);
+
+        mainPage = PageFactory.initElements(driver, MainPage.class);
+        emailPage = PageFactory.initElements(driver, EmailPage.class);
+
     }
 
     @Test
     public void loginTest() {
 
-        mainPage = new MainPage(driver);
-        emailPage = new EmailPage(driver);
-
         mainPage.loginAs(USERNAME, PASSWORD);
         Assert.assertEquals(emailPage.getComposeButtonText(), COMPOSE_BUTTON_TEXT);
     }
 
-
     @Test
     public void logoutTest() {
-
-        mainPage = new MainPage(driver);
-        emailPage = new EmailPage(driver);
 
         emailPage.clickLogoutButton();
         Assert.assertEquals(mainPage.getAuthButtonText(), AUTH_BUTTON_TEXT,"Login field is not presented" );

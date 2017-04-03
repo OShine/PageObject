@@ -1,27 +1,36 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 /**
+ * Page Factory
  * Created by DenisShklyannik on 26.03.2017.
  */
 public class EmailPage {
+
     private WebDriver driver;
 
-    private static final By COMPOSE_BUTTON = By.cssSelector("[data-name=\"compose\"]>span");
-    private static final By LOGOUT_BUTTON = By.cssSelector("#PH_logoutLink");
-
     public EmailPage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
+    @FindBy(css = "[data-name=\"compose\"]>span")
+    private WebElement composeButton;
+
+    @FindBy(css = "#PH_logoutLink")
+    private WebElement logoutButton;
+
     public String getComposeButtonText() {
-        return driver.findElement(COMPOSE_BUTTON).getText();
+        return composeButton.getText();
     }
 
     public void clickLogoutButton(){
-        driver.findElement(LOGOUT_BUTTON).click();
+        logoutButton.click();
     }
+
 
 }
