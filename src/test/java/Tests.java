@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class Tests {
 
-    private WebDriver driver;
+    private static WebDriver driver;
     private MainPage mainPage;
     private EmailPage emailPage;
 
