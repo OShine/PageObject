@@ -2,7 +2,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.EmailPage;
@@ -36,16 +35,16 @@ public class Tests {
         driver.manage().window().maximize();
         driver.get(BASE_URL);
 
-        mainPage = PageFactory.initElements(driver, MainPage.class);
-        emailPage = PageFactory.initElements(driver, EmailPage.class);
+        mainPage = new MainPage(driver);
 
     }
 
     @Test
     public void loginTest() {
-
-        mainPage.loginAs(USERNAME, PASSWORD);
+        
+        emailPage = mainPage.loginAs(USERNAME, PASSWORD);
         Assert.assertEquals(emailPage.getComposeButtonText(), COMPOSE_BUTTON_TEXT);
+
     }
 
     @Test

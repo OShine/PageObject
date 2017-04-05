@@ -28,8 +28,9 @@ public class EmailPage {
         return composeButton.getText();
     }
 
-    public void clickLogoutButton(){
+    public MainPage clickLogoutButton(){
         logoutButton.click();
+        return new MainPage(driver);
     }
 
 

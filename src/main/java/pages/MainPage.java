@@ -43,10 +43,11 @@ public class MainPage {
         authButton.click();
     }
 
-    public void loginAs(String userName, String password) {
+    public EmailPage loginAs(String userName, String password) {
         setLogin(userName);
         setPassword(password);
         clickLoginButton();
+        return new EmailPage(driver);
     }
 
 }
