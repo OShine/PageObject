@@ -41,7 +41,7 @@ public class Tests {
 
     @Test
     public void loginTest() {
-        
+
         emailPage = mainPage.loginAs(USERNAME, PASSWORD);
         Assert.assertEquals(emailPage.getComposeButtonText(), COMPOSE_BUTTON_TEXT);
 
