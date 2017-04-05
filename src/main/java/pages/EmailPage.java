@@ -20,8 +20,9 @@ public class EmailPage {
         return driver.findElement(COMPOSE_BUTTON).getText();
     }
 
-    public void clickLogoutButton(){
+    public MainPage clickLogoutButton(){
         driver.findElement(LOGOUT_BUTTON).click();
+        return new MainPage(driver);
     }
 
 }

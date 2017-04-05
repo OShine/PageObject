@@ -34,24 +34,20 @@ public class Tests {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get(BASE_URL);
+
+        mainPage = new MainPage(driver);
     }
 
     @Test
     public void loginTest() {
-
-        mainPage = new MainPage(driver);
-        emailPage = new EmailPage(driver);
-
-        mainPage.loginAs(USERNAME, PASSWORD);
+        
+        emailPage = mainPage.loginAs(USERNAME, PASSWORD);
         Assert.assertEquals(emailPage.getComposeButtonText(), COMPOSE_BUTTON_TEXT);
     }
 
 
     @Test
     public void logoutTest() {
-
-        mainPage = new MainPage(driver);
-        emailPage = new EmailPage(driver);
 
         emailPage.clickLogoutButton();
         Assert.assertEquals(mainPage.getAuthButtonText(), AUTH_BUTTON_TEXT,"Login field is not presented" );
